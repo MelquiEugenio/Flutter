@@ -1,4 +1,4 @@
-# counter_app_with_mobx
+# Counter app using MobX
 
 A std counter Flutter application using MobX.
 
