@@ -32,23 +32,48 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Spacer(flex: 4),
             Text(
-              'You have pushed the button this many times:'
+              'Counter value:',
+              style: TextStyle(fontSize: 18),
             ),
+            Spacer(),
             Observer(
               builder: (_) => Text(
                 '${counter.value}',
                 style: Theme.of(context).textTheme.headline4,
               ),
-            )
+            ),
+            Spacer(flex: 4),
           ]
         )
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: counter.increment,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        child: Container(
+          height: 80.0,
+        ),
+      ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          FloatingActionButton(
+            onPressed: counter.decrement,
+            child: Icon(Icons.remove),
+          ),
+          FloatingActionButton(
+            onPressed: counter.increment,
+            child: Icon(Icons.add),
+          )
+        ],
       ),
     );
   }
 }
+
+/*FloatingActionButton(
+        onPressed: counter.increment,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ),*/
