@@ -71,9 +71,3 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
-
-/*FloatingActionButton(
-        onPressed: counter.increment,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),*/
