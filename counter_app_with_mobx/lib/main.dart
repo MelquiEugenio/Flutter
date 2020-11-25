@@ -35,7 +35,7 @@ class MyHomePage extends StatelessWidget {
             Spacer(flex: 4),
             Text(
               'Counter value:',
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 27),
             ),
             Spacer(),
             Observer(
