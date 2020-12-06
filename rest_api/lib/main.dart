@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -30,22 +28,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  String _loginName = "";
-  String _avatarURL = 'https://avatars3.githubusercontent.com/u/8726739?v=4';
+  final myController = TextEditingController();
 
-  void getHttp() async {
-    try {
-      Response response = await Dio().get("http://api.github.com/users/eagle");
-
-      setState(() {
-        _avatarURL = response.data["avatar_url"].toString();
-        _loginName = response.data["login"].toString();
-      });
-
-    } catch (e) {
-      print(e);
-      print("diggle");
-    }
+  @override
+  void dispose() {
+    myController.dispose();
+    super.dispose();
   }
 
   @override
@@ -62,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
                 width: MediaQuery.of(context).size.width * 0.5,
                 child: TextField(
+                  controller: myController,
                   decoration: InputDecoration(
                       hintText: 'Github user name'
                   ),
@@ -93,5 +82,37 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  void getHttp() async {
+
+    try {
+
+      Response response = await Dio().get("http://api.github.com/users/${myController.text}");
+
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) {
+            return Scaffold(
+              appBar: AppBar(
+                title: Text('Github User Profile'),
+              ),
+              body: Image.network(
+                  response.data["avatar_url"],
+                  loadingBuilder: (context, child, progress) {
+                    return progress == null
+                        ? child
+                        : LinearProgressIndicator();
+                  },
+              ),
+            );
+          },
+        ),
+      );
+
+    } catch (e) {
+      print(e);
+      print("diggle");
+    }
   }
 }
