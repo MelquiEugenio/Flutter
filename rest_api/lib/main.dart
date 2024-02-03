@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({required this.title}) : super();
 
   final String title;
 
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ButtonTheme(
               minWidth: MediaQuery.of(context).size.width * 0.4,
               height: MediaQuery.of(context).size.width * 0.1,
-              child: RaisedButton.icon(
+              child: ElevatedButton.icon(
                 onPressed: getUser,
                 label: Text(
                   "SEARCH",
@@ -71,7 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.white,
                   size: MediaQuery.of(context).size.width * 0.08,
                 ),
-                color: Colors.lightBlueAccent,
               ),
             ),
             Spacer(flex: 5),
@@ -118,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ButtonTheme(
                       minWidth: MediaQuery.of(context).size.width * 0.7,
                       height: MediaQuery.of(context).size.width * 0.1,
-                      child: RaisedButton.icon(
+                      child: ElevatedButton.icon(
                         onPressed: getRepos,
                         label: Text(
                           "SEE REPOSITORIES",
@@ -132,7 +131,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: Colors.white,
                           size: MediaQuery.of(context).size.width * 0.08,
                         ),
-                        color: Colors.lightBlueAccent,
                       ),
                     ),
                     Spacer(flex: 3),
