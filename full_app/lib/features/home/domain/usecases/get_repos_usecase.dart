@@ -13,6 +13,6 @@ class GetReposUsecase implements GetReposUsecaseInterface {
     if (username.isEmpty) {
       return left(Exception('Username is empty'));
     }
-    return homeRepository.getRepositories(username);
+    return await homeRepository.getRepositories(username);
   }
 }
