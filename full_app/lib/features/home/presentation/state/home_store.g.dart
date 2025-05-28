@@ -9,39 +9,68 @@ part of 'home_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$HomeStore on _HomeStore, Store {
-  late final _$counterAtom = Atom(name: '_HomeStore.counter', context: context);
+  late final _$isLoadingAtom =
+      Atom(name: '_HomeStore.isLoading', context: context);
 
   @override
-  int get counter {
-    _$counterAtom.reportRead();
-    return super.counter;
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
   }
 
   @override
-  set counter(int value) {
-    _$counterAtom.reportWrite(value, super.counter, () {
-      super.counter = value;
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
     });
   }
 
-  late final _$_HomeStoreActionController =
-      ActionController(name: '_HomeStore', context: context);
+  late final _$errorMessageAtom =
+      Atom(name: '_HomeStore.errorMessage', context: context);
 
   @override
-  void incrementCounter() {
-    final _$actionInfo = _$_HomeStoreActionController.startAction(
-        name: '_HomeStore.incrementCounter');
-    try {
-      return super.incrementCounter();
-    } finally {
-      _$_HomeStoreActionController.endAction(_$actionInfo);
-    }
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
+  late final _$reposAtom = Atom(name: '_HomeStore.repos', context: context);
+
+  @override
+  ObservableList<Repository> get repos {
+    _$reposAtom.reportRead();
+    return super.repos;
+  }
+
+  @override
+  set repos(ObservableList<Repository> value) {
+    _$reposAtom.reportWrite(value, super.repos, () {
+      super.repos = value;
+    });
+  }
+
+  late final _$fetchRepositoriesAsyncAction =
+      AsyncAction('_HomeStore.fetchRepositories', context: context);
+
+  @override
+  Future<void> fetchRepositories(String username) {
+    return _$fetchRepositoriesAsyncAction
+        .run(() => super.fetchRepositories(username));
   }
 
   @override
   String toString() {
     return '''
-counter: ${counter}
+isLoading: ${isLoading},
+errorMessage: ${errorMessage},
+repos: ${repos}
     ''';
   }
 }
